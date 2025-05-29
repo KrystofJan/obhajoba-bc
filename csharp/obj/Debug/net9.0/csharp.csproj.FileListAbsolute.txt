@@ -1,0 +1,14 @@
+/home/zahry/school/obhajoba-bc/csharp/bin/Debug/net9.0/csharp
+/home/zahry/school/obhajoba-bc/csharp/bin/Debug/net9.0/csharp.deps.json
+/home/zahry/school/obhajoba-bc/csharp/bin/Debug/net9.0/csharp.runtimeconfig.json
+/home/zahry/school/obhajoba-bc/csharp/bin/Debug/net9.0/csharp.dll
+/home/zahry/school/obhajoba-bc/csharp/bin/Debug/net9.0/csharp.pdb
+/home/zahry/school/obhajoba-bc/csharp/obj/Debug/net9.0/csharp.GeneratedMSBuildEditorConfig.editorconfig
+/home/zahry/school/obhajoba-bc/csharp/obj/Debug/net9.0/csharp.AssemblyInfoInputs.cache
+/home/zahry/school/obhajoba-bc/csharp/obj/Debug/net9.0/csharp.AssemblyInfo.cs
+/home/zahry/school/obhajoba-bc/csharp/obj/Debug/net9.0/csharp.csproj.CoreCompileInputs.cache
+/home/zahry/school/obhajoba-bc/csharp/obj/Debug/net9.0/csharp.dll
+/home/zahry/school/obhajoba-bc/csharp/obj/Debug/net9.0/refint/csharp.dll
+/home/zahry/school/obhajoba-bc/csharp/obj/Debug/net9.0/csharp.pdb
+/home/zahry/school/obhajoba-bc/csharp/obj/Debug/net9.0/csharp.genruntimeconfig.cache
+/home/zahry/school/obhajoba-bc/csharp/obj/Debug/net9.0/ref/csharp.dll
