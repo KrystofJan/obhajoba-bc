@@ -4,57 +4,39 @@ using System.Text.RegularExpressions;
 
 class FileProcessor {
     public static void FilterLinesByRegex(string inputFilePath, string regexPattern, string outputFilePath) {
-	StreamReader reader = null;
-	StreamWriter writer = null;
-	int lineNumber = 0;
+        try {
+            Regex regex = new Regex(regexPattern, RegexOptions.Compiled);
 
-	try {
-	    reader = new StreamReader(inputFilePath);
-	    writer = new StreamWriter(outputFilePath);
-	    Regex regex = new Regex(regexPattern);
+            using StreamReader reader = new StreamReader(inputFilePath);
+            using StreamWriter writer = new StreamWriter(outputFilePath);
 
-	    string line;
-	    while ((line = reader.ReadLine()) != null) {
-		lineNumber++;
-		try {
-		    if (regex.IsMatch(line)) {
-			writer.WriteLine(line);
-		    }
-		}
-		catch (Exception ex) {
-		    Console.WriteLine($"⚠️ Chyba při zpracování regulárního výrazu na řádku {lineNumber}: {ex.Message}");
-		}
-	    }
-	}
-	catch (FileNotFoundException) {
-	    Console.WriteLine($"❌ Soubor '{inputFilePath}' nebyl nalezen.");
-	}
-	catch (IOException ex) {
-	    Console.WriteLine($"❌ IO chyba: {ex.Message}");
-	}
-	catch (OutOfMemoryException) {
-	    Console.WriteLine("❌ Nedostatek paměti při zpracování souboru.");
-	}
-	catch (Exception ex) {
-	    Console.WriteLine($"❌ Neočekávaná chyba: {ex.Message}");
-	}
-	finally {
-	    if (reader != null) {
-		try { 
-		    reader.Close(); 
-		} catch (Exception ex) {
-		    Console.WriteLine($"⚠️ Chyba při zavírání vstupního souboru: {ex.Message}"); 
-		}
-	    }
+            string? line;
+            int lineNumber = 0;
 
-	    if (writer != null) {
-		try { 
-		    writer.Close(); 
-		} catch (Exception ex) {
-		    Console.WriteLine($"⚠️ Chyba při zavírání výstupního souboru: {ex.Message}"); 
-		}
-	    }
-	}
+            while ((line = reader.ReadLine()) != null) { // +1
+                lineNumber++;
+                try {
+                    if (regex.IsMatch(line)) {
+                        writer.WriteLine(line);
+                    }
+                }
+                catch (Exception ex) {
+                    Console.WriteLine($"⚠️ Chyba při zpracování regulárního výrazu na řádku {lineNumber}: {ex.Message}");
+                }
+            }
+        }
+        catch (FileNotFoundException) {
+            Console.WriteLine($"❌ Soubor '{inputFilePath}' nebyl nalezen.");
+        }
+        catch (IOException ex) {
+            Console.WriteLine($"❌ IO chyba: {ex.Message}");
+        }
+        catch (OutOfMemoryException) {
+            Console.WriteLine("❌ Nedostatek paměti při zpracování souboru.");
+        }
+        catch (Exception ex) {
+            Console.WriteLine($"❌ Neočekávaná chyba: {ex.Message}");
+        }
     }
 }
 

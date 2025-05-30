@@ -3,7 +3,6 @@ use std::fs::File;
 use std::io::{self, BufRead, BufReader, BufWriter, Write};
 use regex::Regex;
 
-#[allow(clippy::cognitive_complexity)]
 fn filter_lines_by_regex(input_file: &str, pattern: &str, output_file: &str) -> io::Result<()> {
     let reader = BufReader::new(File::open(input_file)?);
     let mut writer = BufWriter::new(File::create(output_file)?);
@@ -11,24 +10,21 @@ fn filter_lines_by_regex(input_file: &str, pattern: &str, output_file: &str) -> 
         eprintln!("❌ Chyba v regulárním výrazu: {}", e);
         io::Error::new(io::ErrorKind::InvalidInput, "Neplatný regex")
     })?;
-
-    for (line_number, line_result) in reader.lines().enumerate() {
-        let line = match line_result {
+    for (line_number, line_result) in reader.lines().enumerate() { // +1
+        let line = match line_result { // +1
             Ok(content) => content,
             Err(e) => {
                 eprintln!("❌ Chyba při čtení řádku {}: {}", line_number + 1, e);
                 continue;
             }
         };
-
-        if re.is_match(&line) {
-                if let Err(e) = writeln!(writer, "{}", line) {
+        if re.is_match(&line) { // +1
+                if let Err(e) = writeln!(writer, "{}", line) { // +1
                     eprintln!("❌ Chyba při zápisu na řádku {}: {}", line_number + 1, e);
                     return Err(e);
                 }
             }
     }
-
     writer.flush()?;
     Ok(())
 }
@@ -47,7 +43,7 @@ fn main() {
 
     println!("📂 Zpracovávám soubor '{}' s výrazem '{}'", input_file, pattern);
 
-    if let Err(e) = filter_lines_by_regex(input_file, pattern, output_file) {
+    if let Err(e) = filter_lines_by_regex(input_file, pattern, output_file) { // +1
         eprintln!("❌ Chyba během zpracování: {}", e);
     } else {
         println!("✅ Hotovo. Výsledky jsou zapsány do souboru.");
